@@ -22,10 +22,14 @@ async function run(){
 
     try{
 
-        //const appointmentOptionsCollection = client.db("doctorsPortal").collection("appointmentOptions");
-    // const bookingsCollection = client.db("doctorsPortal").collection("bookings");
-    // const userCollection = client.db("doctorsPortal").collection("user");
-    const categoryCollection = client.db('resale').collection('')
+    const categoryCollection = client.db('resale').collection('productCategoryCollection');
+
+
+    app.get('/category',async(req,res) =>{
+        const query = {};
+        const category = await categoryCollection.find(query).toArray();
+        res.send(category)
+    })
 
     }
 
