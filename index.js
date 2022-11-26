@@ -23,6 +23,11 @@ async function run(){
     try{
 
     const categoryCollection = client.db('resale').collection('productCategoryCollection');
+    // console.log(categoryCollection)
+    // const phoneCollection = client.db('resale').collection('phoneCollection');
+    const phoneCollection = client.db('resale').collection('phoneCollection');
+    console.log(phoneCollection)
+
 
 
     app.get('/category',async(req,res) =>{
@@ -31,6 +36,22 @@ async function run(){
         res.send(category)
     })
 
+    app.get('/collection/:id',async(req,res) =>{
+       const id = req.params.id;
+       const query = {
+        categoryId:id
+       }
+       const collection = await phoneCollection.find(query).toArray();
+       res.send(collection) 
+        
+    })
+
+        // app.get('/services/:id',async(req,res) =>{
+        //     const id = req.params.id;
+        //     const query = { _id: ObjectId(id)};
+        //     const data = await serviceCollection.findOne(query);
+        //     res.send(data)
+        // })
     }
 
 
