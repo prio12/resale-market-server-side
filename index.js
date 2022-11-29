@@ -66,6 +66,12 @@ async function run(){
       res.send(users)
     })
 
+    app.get('/users/role',async(req,res) =>{
+      const query ={};
+      const users = await userCollection.find(query).toArray();
+      res.send(users)
+    })
+
     //booking collection
 
     app.post('/bookings',async(req,res) =>{
