@@ -38,6 +38,12 @@ async function run(){
         res.send(category)
     })
 
+    app.post('/collection',async(req,res) =>{
+      const product = req.body;
+      const result = await phoneCollection.insertOne(product);
+      res.send(result)
+    })
+
     app.get('/collection/:id',async(req,res) =>{
        const id = req.params.id;
        const query = {
