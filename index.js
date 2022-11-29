@@ -23,10 +23,10 @@ async function run(){
     try{
 
     const categoryCollection = client.db('resale').collection('productCategoryCollection');
-    // console.log(categoryCollection)
-    // const phoneCollection = client.db('resale').collection('phoneCollection');
     const phoneCollection = client.db('resale').collection('phoneCollection');
-    // console.log(phoneCollection)
+    const userCollection = client.db('resale').collection('users')
+    const bookingCollection = client.db('resale').collection('bookingCollection')
+    
 
 
 
