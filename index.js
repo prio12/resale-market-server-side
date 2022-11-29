@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const jwt = require('jsonwebtoken')
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const port = process.env.PORT || 5000;
 
@@ -25,7 +26,7 @@ async function run(){
     const categoryCollection = client.db('resale').collection('productCategoryCollection');
     const phoneCollection = client.db('resale').collection('phoneCollection');
     const userCollection = client.db('resale').collection('users')
-    const bookingCollection = client.db('resale').collection('bookingCollection')
+    const bookingCollection = client.db('resale').collection('bookingCollection');
     
 
 
@@ -64,7 +65,7 @@ async function run(){
 
     app.get('/bookings',async(req,res) =>{
       const email = req.query.email;
-      const query = {userEmail: email};
+      const query = {email: email};
       const bookings = await bookingCollection.find(query).toArray();
       res.send(bookings)
     })
