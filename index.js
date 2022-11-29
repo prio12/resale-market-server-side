@@ -65,12 +65,31 @@ async function run(){
       const users = await userCollection.find(query).toArray();
       res.send(users)
     })
-
-    app.get('/users/role',async(req,res) =>{
-      const query ={};
-      const users = await userCollection.find(query).toArray();
-      res.send(users)
+    //get admin 
+    app.get('/users/admin/:email', async (req,res) =>{
+      const email = req.params.email;
+      const query ={email}
+      const user = await userCollection.findOne(query);
+      res.send({isAdmin: user?.role ==='Admin'})
     })
+
+    //get seller
+    app.get('/users/seller/:email', async (req,res) =>{
+      const email = req.params.email;
+      const query ={email}
+      const user = await userCollection.findOne(query);
+      res.send({isSeller: user?.role ==='Seller'})
+    })
+
+    //get Buyers
+
+    app.get('/users/buyer/:email', async (req,res) =>{
+      const email = req.params.email;
+      const query ={email}
+      const user = await userCollection.findOne(query);
+      res.send({isBuyer: user?.role ==='Buyer'})
+    })
+
 
     //booking collection
 
