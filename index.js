@@ -26,7 +26,7 @@ async function run(){
     // console.log(categoryCollection)
     // const phoneCollection = client.db('resale').collection('phoneCollection');
     const phoneCollection = client.db('resale').collection('phoneCollection');
-    console.log(phoneCollection)
+    // console.log(phoneCollection)
 
 
 
@@ -46,7 +46,18 @@ async function run(){
         
     })
 
+    //users collection
+
+    app.post('/users', async(req,res) =>{
+      const user = req.body;
+      const result = userCollection.insertOne(user);
+      res.send(result)
+    })
+
     }
+
+
+   
 
 
     catch{
